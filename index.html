@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator with Secret Access</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Calculator -->
+        <div class="calculator-wrapper">
+            <div class="calculator">
+                <h1>Simple Calculator</h1>
+                <div class="display">
+                    <input type="text" id="display" readonly placeholder="0">
+                </div>
+                <div class="buttons">
+                    <button class="btn clear" onclick="clearDisplay()">C</button>
+                    <button class="btn operator" onclick="appendOperator('/')">/</button>
+                    <button class="btn operator" onclick="appendOperator('*')">*</button>
+                    <button class="btn delete" onclick="deleteLastChar()">←</button>
+
+                    <button class="btn number" onclick="appendNumber('7')">7</button>
+                    <button class="btn number" onclick="appendNumber('8')">8</button>
+                    <button class="btn number" onclick="appendNumber('9')">9</button>
+                    <button class="btn operator" onclick="appendOperator('-')">-</button>
+
+                    <button class="btn number" onclick="appendNumber('4')">4</button>
+                    <button class="btn number" onclick="appendNumber('5')">5</button>
+                    <button class="btn number" onclick="appendNumber('6')">6</button>
+                    <button class="btn operator" onclick="appendOperator('+')">+</button>
+
+                    <button class="btn number" onclick="appendNumber('1')">1</button>
+                    <button class="btn number" onclick="appendNumber('2')">2</button>
+                    <button class="btn number" onclick="appendNumber('3')">3</button>
+                    <button class="btn decimal" onclick="appendNumber('.')">.</button>
+
+                    <button class="btn number" onclick="appendNumber('0')">0</button>
+                    <button class="btn equals" onclick="calculate()" colspan="2">=</button>
+                </div>
+            </div>
+
+            <!-- Secret Code Input -->
+            <div class="secret-section">
+                <label for="secretCode">🔐 Enter Secret Code:</label>
+                <input 
+                    type="password" 
+                    id="secretCode" 
+                    placeholder="Enter secret code to unlock hidden file"
+                    onkeypress="if(event.key === 'Enter') unlockHiddenFile()"
+                >
+                <button onclick="unlockHiddenFile()">Unlock</button>
+            </div>
+        </div>
+
+        <!-- Hidden File (Initially Hidden) -->
+        <div id="hiddenFileContainer" class="hidden-file-container hidden">
+            <div class="hidden-file-content">
+                <button class="close-btn" onclick="closeHiddenFile()">✕</button>
+                <h2>🎯 Hidden File Accessed!</h2>
+                <div class="file-info">
+                    <h3>Secret Document</h3>
+                    <p><strong>Filename:</strong> secret_data.txt</p>
+                    <p><strong>Size:</strong> 2.5 KB</p>
+                    <p><strong>Last Modified:</strong> 2026-05-25</p>
+                    <hr>
+                    <h4>📄 File Contents:</h4>
+                    <pre>=====================================
+    CONFIDENTIAL DATA - ACCESS GRANTED
+=====================================
+
+Welcome to the Secret Vault!
+
+This is a hidden file that only authorized users can access.
+You've successfully entered the correct secret code.
+
+Hidden Information:
+------------------
+• User Level: Administrator
+• Access Date: 2026-05-25
+• Security Status: VERIFIED ✓
+
+Special Features:
+✓ Calculator Operations: Basic & Advanced
+✓ Secret Storage System
+✓ Encrypted Access Control
+✓ Hidden File Management
+
+Thank you for using the secure calculator!
+====================================</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification -->
+        <div id="notification" class="notification"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
